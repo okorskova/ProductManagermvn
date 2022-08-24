@@ -34,7 +34,16 @@ public class ProductRepositoryTest {
 
         Assertions.assertArrayEquals(expected, actual);
     }
+    @Test
+    public void shouldRemoveId3() {
+        ProductRepository repo = new ProductRepository();
+        repo.save(item1);
+        repo.save(item2);
 
+        Assertions.assertThrows(NotFoundException.class, () -> {
+            repo.removeById(3);
+        });
+    }
 
 }
 

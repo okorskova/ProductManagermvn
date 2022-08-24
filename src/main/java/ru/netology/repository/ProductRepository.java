@@ -14,12 +14,24 @@ public class ProductRepository {
         tmp[tmp.length - 1] = item;
         items = tmp;
     }
+    public Product findById(int id) {
+        for (Product item : items) {
+            if (item.getId() == id) {
+                return item;
+            }
+        }
+        return null;
+    }
 
     public void removeById(int id) {
+        Product it = findById(id);
+        if (it == null) {
+            throw new NotFoundException("Element with id: " + id + " not found");
+        }
         Product[] tmp = new Product[items.length - 1];
         int copyToIndex = 0;
         for (Product item : items) {
-            if (item.getId() != id) {
+            if (item != it) {
                 tmp[copyToIndex] = item;
                 copyToIndex++;
             }
