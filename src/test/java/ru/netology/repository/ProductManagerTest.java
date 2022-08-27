@@ -29,14 +29,32 @@ public class ProductManagerTest {
 
         Assertions.assertArrayEquals(expected, actual);
     }
-    // @Test
-    //  public void shouldShowItem1() {
 
-    //     manager.searchBy("Ёлка");
+    @Test
+    public void shouldFindItem1() {
 
-    //      Product[] expected = {item1};
-    //     Product[] actual = manager.getItems();
+        Product[] expected = {item1};
+        Product[] actual = manager.searchBy("Ёлка");
 
-    //      Assertions.assertArrayEquals(expected, actual);
-    //   }
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldFindItem2() {
+
+        Product[] expected = {item2};
+        Product[] actual = manager.searchBy("Xiaomi Poco M3");
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldFindNull() {
+
+        Product[] expected = {};
+        Product[] actual = manager.searchBy("кот");
+
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
 }
